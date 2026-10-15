@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="color-scheme" content="light only"/>
+  <title>Bliss Press Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      color-scheme: light only;
+      --ivory:    #f5f0eb;
+      --linen:    #ede8e2;
+      --stone:    #d6cfc7;
+      --warm-mid: #a89e94;
+      --charcoal: #2c2825;
+      --ink:      #1a1714;
+      --blush:    #d4a8a0;
+      --blush-lt: #e8cfc8;
+      --gold:     #b8966a;
+      --gold-lt:  #d4b48c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    html {
+      background: #f5f0eb !important;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: #f5f0eb !important;
+      color: #2c2825 !important;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      overflow-x: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        background: #f5f0eb !important;
+        color: #2c2825 !important;
+      }
+      nav { background: #f5f0eb !important; }
+      header { background: #f5f0eb !important; }
+      .product-card, .hero-cell, .occasion-card, .social-card,
+      .about-content, .contact-form, .hero-main,
+      .hero-grid-lower, .about-visual, .contact-info,
+      .cta-strip { background: #f5f0eb !important; color: #2c2825 !important; }
+      .section-title { color: #1a1714 !important; }
+      .products-header .section-title,
+      [style*="background:var(--charcoal)"] .section-title { color: #ffffff !important; }
+      .eyebrow { color: #d4a8a0 !important; }
+      .section-desc, .product-card p, .hero-cell p,
+      .occasion-card p, .social-card p, .about-content p,
+      .contact-info p { color: #a89e94 !important; }
+      .product-card h3, .hero-cell h3, .occasion-card h3,
+      .social-card h3 { color: #1a1714 !important; }
+      .about-visual { background: #ede8e2 !important; }
+      .contact-info { background: #ede8e2 !important; }
+      .cta-strip { background: #ede8e2 !important; }
+      .form-input, .form-select, .form-textarea {
+        background: transparent !important;
+        color: #2c2825 !important;
+      }
+      footer { background: #f5f0eb !important; }
+    }
+
+    /* ── GRAIN TEXTURE OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 40px 48px;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .logo-img {
+      width: clamp(140px, 22vw, 220px);
+      height: auto;
+      display: block;
+    }
+
+    .header-sub {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .tab-btn {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 18px 22px;
+      border: none;
+      background: transparent;
+      color: var(--warm-mid);
+      cursor: pointer;
+      transition: color 0.2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; right: 50%;
+      height: 1px;
+      background: var(--charcoal);
+      transition: left 0.3s ease, right 0.3s ease;
+    }
+
+    .tab-btn:hover { color: var(--charcoal); }
+    .tab-btn:hover::after { left: 20%; right: 20%; }
+
+    .tab-btn.active {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+    .tab-btn.active::after { left: 20%; right: 20%; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 44px 40px 120px;
+    }
+    @media (max-width: 600px) { main { padding: 48px 24px 80px; } }
+
+    .tab-section { display: none; }
+    .tab-section.active { display: block; animation: fadeUp 0.5s ease forwards; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION LABEL ── */
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blush);
+      font-weight: 400;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .section-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--blush);
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--warm-mid);
+      line-height: 1.85;
+      max-width: 520px;
+      font-weight: 300;
+    }
+
+    /* ── DIVIDER ── */
+    .rule {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 24px 0;
+    }
+
+    /* ── HOME HERO ── */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-bottom: 1px;
+    }
+    @media (max-width: 700px) { .hero-layout { grid-template-columns: 1fr; } }
+
+    .hero-main {
+      background: var(--ivory);
+      padding: 72px 56px;
+      grid-column: 1 / -1;
+    }
+    @media (max-width: 700px) { .hero-main { padding: 48px 32px; } }
+
+    .feature-band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-top: 44px;
+      margin-bottom: 44px;
+    }
+    @media (max-width: 800px) { .feature-band { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) { .feature-band { margin-top: 32px; margin-bottom: 32px; } }
+
+    .feature-photo {
+      background: var(--ivory);
+      position: relative;
+      min-height: 420px;
+    }
+    .feature-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 800px) { .feature-photo { min-height: 320px; } }
+
+    .feature-text {
+      background: var(--ivory);
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (max-width: 700px) { .feature-text { padding: 48px 32px; } }
+
+    .feature-text .section-title { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+    .feature-text .section-desc { margin-bottom: 30px; }
+
+    .hero-grid-lower {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-bottom: 80px;
+    }
+    @media (max-width: 800px) { .hero-grid-lower { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .hero-grid-lower { grid-template-columns: 1fr; } }
+
+    .hero-cell {
+      background: var(--ivory);
+      padding: 44px 40px;
+      transition: background 0.3s ease;
+    }
+    .hero-cell:hover { background: var(--linen); }
+
+    .hero-cell-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .hero-cell h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .hero-cell p {
+      font-size: 0.83rem;
+      color: var(--warm-mid);
+      line-height: 1.8;
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      border: 1px solid var(--stone);
+      padding: 60px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      background: var(--linen);
+    }
+    @media (max-width: 700px) { .cta-strip { flex-direction: column; text-align: center; padding: 44px 32px; } }
+
+    .cta-strip h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .cta-strip p {
+      font-size: 0.85rem;
+      color: var(--warm-mid);
+      margin-top: 10px;
+      line-height: 1.8;
+      max-width: 420px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--charcoal);
+      color: var(--ivory);
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid var(--charcoal);
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--charcoal);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid var(--charcoal);
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: var(--charcoal);
+      color: var(--ivory);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1px;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: var(--charcoal);
+      padding: 64px 56px;
+      border: 1px solid var(--charcoal);
+    }
+    .products-header .eyebrow { color: var(--blush); }
+    .products-header .section-title { color: #fff !important; }
+    .products-header .section-title em { color: var(--blush-lt); }
+    .products-header .section-desc { color: rgba(255,255,255,0.55); }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-bottom: 1px;
+    }
+    @media (max-width: 800px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .product-grid { grid-template-columns: 1fr; } }
+
+    .product-card {
+      background: var(--ivory);
+      padding: 40px 32px;
+      transition: background 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card:hover { background: var(--linen); }
+
+    .product-card-inner { position: relative; z-index: 1; }
+
+    .product-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      color: var(--stone);
+      letter-spacing: 0.15em;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .product-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .product-card p {
+      font-size: 0.8rem;
+      color: var(--warm-mid);
+      line-height: 1.75;
+    }
+
+    .product-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    /* ── ABOUT ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-bottom: 60px;
+    }
+    @media (max-width: 700px) { .about-layout { grid-template-columns: 1fr; } }
+
+    .about-visual {
+      background: var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 64px 40px;
+      gap: 20px;
+    }
+
+    .about-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--blush);
+      line-height: 1;
+      font-style: italic;
+    }
+
+    .about-location {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .about-content {
+      background: var(--ivory);
+      padding: 64px 56px;
+    }
+    @media (max-width: 700px) { .about-content { padding: 44px 32px; } }
+
+    .about-content p {
+      font-size: 0.88rem;
+      color: var(--warm-mid);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .about-tag {
+      background: transparent;
+      border: 1px solid var(--stone);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      padding: 7px 16px;
+      font-weight: 400;
+    }
+
+    /* ── SOCIAL ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-bottom: 1px;
+    }
+    @media (max-width: 800px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+    .gallery-item {
+      background: var(--ivory);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s ease;
+    }
+    .gallery-item:hover { background: var(--linen); }
+
+    .gallery-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-item.has-photo { padding: 0; cursor: pointer; }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      z-index: 2;
+      padding: 18px 20px;
+      background: linear-gradient(to top, rgba(26,23,20,0.68), rgba(26,23,20,0));
+      color: #ffffff;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .gallery-count {
+      position: absolute;
+      top: 14px; right: 14px;
+      z-index: 2;
+      padding: 5px 11px;
+      background: rgba(26,23,20,0.55);
+      color: #ffffff;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .gallery-expand {
+      display: none;
+      background: var(--ivory);
+      border: 1px solid var(--stone);
+      border-top: none;
+      padding: 40px 32px;
+      margin-bottom: 40px;
+    }
+    .gallery-expand.open { display: block; }
+    @media (max-width: 600px) { .gallery-expand { padding: 32px 20px; } }
+
+    .gallery-expand-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .gallery-expand-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: var(--charcoal);
+    }
+
+    .gallery-expand-close {
+      background: none;
+      border: 1px solid var(--stone);
+      padding: 7px 18px;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .gallery-expand-close:hover { background: var(--linen); }
+
+    .gallery-expand-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 600px) { .gallery-expand-grid { grid-template-columns: 1fr; } }
+
+    .gallery-expand-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--stone);
+      cursor: zoom-in;
+      transition: opacity 0.2s ease;
+    }
+    .gallery-expand-grid img:hover { opacity: 0.82; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,23,20,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 30px;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      cursor: default;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      background: none;
+      border: none;
+      font-size: 2.2rem;
+      font-weight: 300;
+      line-height: 1;
+      color: #ffffff;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .gallery-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      max-width: 80%;
+    }
+
+    .gallery-sublabel {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--stone);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      margin-bottom: 60px;
+    }
+    @media (max-width: 800px) { .social-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .social-grid { grid-template-columns: 1fr; } }
+
+    .social-card {
+      background: var(--ivory);
+      padding: 44px 36px;
+      text-decoration: none;
+      display: block;
+      transition: background 0.25s ease;
+      cursor: pointer;
+    }
+    .social-card:hover { background: var(--linen); }
+
+    .social-platform {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 20px;
+      display: block;
+      font-weight: 400;
+    }
+
+    .social-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .social-card p {
+      font-size: 0.8rem;
+      color: var(--warm-mid);
+      line-height: 1.75;
+    }
+
+    .social-handle {
+      display: block;
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: var(--blush);
+      letter-spacing: 0.05em;
+      font-weight: 400;
+    }
+
+    /* ── CONTACT ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+    }
+    @media (max-width: 700px) { .contact-layout { grid-template-columns: 1fr; } }
+
+    .contact-info {
+      background: var(--linen);
+      padding: 60px 44px;
+    }
+
+    .contact-info p {
+      font-size: 0.83rem;
+      color: var(--warm-mid);
+      line-height: 1.9;
+      margin-bottom: 10px;
+    }
+
+    .contact-info a {
+      color: var(--charcoal);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .contact-info a:hover { color: var(--blush); }
+
+    .contact-detail {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-detail-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 400;
+    }
+
+    .contact-detail-value {
+      font-size: 0.85rem;
+      color: var(--charcoal);
+    }
+
+    .contact-form {
+      background: var(--ivory);
+      padding: 60px 48px;
+    }
+    @media (max-width: 700px) { .contact-form { padding: 44px 32px; } }
+
+    .form-row { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      padding: 13px 0;
+      border: none;
+      border-bottom: 1px solid var(--stone);
+      background: transparent;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus { border-bottom-color: var(--charcoal); }
+
+    .form-textarea { resize: vertical; min-height: 90px; padding-top: 13px; }
+    .form-select { cursor: pointer; }
+
+    .form-submit {
+      margin-top: 32px;
+    }
+
+    /* ── OCCASIONS ── */
+    .occasions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+    }
+    @media (max-width: 800px) { .occasions-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .occasions-grid { grid-template-columns: 1fr; } }
+
+    .occasion-card {
+      background: var(--ivory);
+      padding: 36px 28px;
+      transition: background 0.25s ease;
+      cursor: pointer;
+    }
+    .occasion-card:hover { background: var(--linen); }
+
+    .occasion-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--blush-lt);
+      font-weight: 300;
+      display: block;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .occasion-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .occasion-card p {
+      font-size: 0.78rem;
+      color: var(--warm-mid);
+      line-height: 1.75;
+    }
+
+    .occasion-tag {
+      display: block;
+      margin-top: 14px;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--stone);
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--charcoal);
+    }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .footer-loc {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <img class="logo-img" src="images/bliss-press-boutique.png" alt="Bliss Press Boutique"/>
+  <div class="header-sub" style="text-align:center;">Handcrafted · Florida Made · Custom Orders Welcome</div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <button class="tab-btn active" onclick="showTab('home')">Home</button>
+    <button class="tab-btn" onclick="showTab('products')">Products</button>
+    <button class="tab-btn" onclick="showTab('gallery')">Gallery</button>
+    <button class="tab-btn" onclick="showTab('occasions')">Occasions</button>
+    <button class="tab-btn" onclick="showTab('about')">My Story</button>
+    <button class="tab-btn" onclick="showTab('social')">Social &amp; Shop</button>
+    <button class="tab-btn" onclick="showTab('contact')">Contact</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="tab-section active">
+
+    <div style="border:1px solid var(--charcoal); padding:72px 56px; margin-bottom:1px; background:var(--charcoal);" class="reveal">
+      <span class="eyebrow" style="color:var(--blush);">Bliss Press Boutique</span>
+      <h1 class="section-title" style="color:#ffffff !important;">Beautifully crafted,<br><em style="color:#e8cfc8 !important;">made for your moments.</em></h1>
+      <div class="rule"></div>
+      <p class="section-desc" style="color:rgba(255,255,255,0.55);">From baby milestone disks to birthday party kits including cake toppers — every piece is made to order with premium materials and a whole lot of heart, right here in sunny Florida.</p>
+      <div style="display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;">
+        <button class="btn-primary" style="background:#fff; color:var(--charcoal); border-color:#fff;" onclick="showTab('products')">Shop Products</button>
+        <button class="btn-outline" style="border-color:#fff; color:#fff;" onmouseover="this.style.background='#fff'; this.style.color='var(--charcoal)'" onmouseout="this.style.background='transparent'; this.style.color='#fff'" onclick="showTab('contact')">Custom Order</button>
+      </div>
+    </div>
+
+    <div class="feature-band reveal">
+      <div class="feature-photo">
+        <img src="images/baby-milestone-disks-in-blush-and-gold.jpg" alt="Baby milestone disks in blush and gold"/>
+      </div>
+      <div class="feature-text">
+        <span class="eyebrow">Made to Keep</span>
+        <h2 class="section-title">Every first,<br><em>worth remembering.</em></h2>
+        <div class="rule"></div>
+        <p class="section-desc">Hand-finished acrylic milestone disks &mdash; from hello world through the first year. Available in a full palette of colors to match any nursery.</p>
+        <div>
+          <button class="btn-outline" onclick="showTab('gallery')">View the Gallery</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-grid-lower reveal">
+      <div class="hero-cell">
+        <div class="hero-cell-num">01</div>
+        <h3>Baby Milestone Disks</h3>
+        <p>Acrylic keepsake disks to document every precious first — beautifully designed month-by-month sets.</p>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-num">02</div>
+        <h3>Waterproof Stickers &amp; Magnets</h3>
+        <p>Vibrant, UV-resistant vinyl stickers and custom magnets built to last on tumblers, bottles, fridges, and beyond.</p>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-num">03</div>
+        <h3>Birthday Party Kits</h3>
+        <p>All-in-one celebration bundles with invitations, personalized party favors and personalized snack options.</p>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-num">04</div>
+        <h3>Cake Toppers</h3>
+        <p>Custom cardstock toppers with shaker options for every occasion — personalized with names, ages, and themes.</p>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-num">05</div>
+        <h3>Wedding Invitations</h3>
+        <p>Elegant custom invitations, place cards, and personalized wedding stationery for your big day.</p>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-num">06</div>
+        <h3>Bachelorette Party Kits</h3>
+        <p>Custom bachelorette bundles with invitations, favor bags, and everything the bride squad needs.</p>
+      </div>
+      <div class="hero-cell">
+        <div class="hero-cell-num">07</div>
+        <h3>Custom Shirts &amp; Accessories</h3>
+        <p>Personalized heat-press vinyl shirts, onesies, and accessories — perfect for matching family sets and events.</p>
+      </div>
+    </div>
+
+    <div class="cta-strip reveal">
+      <div>
+        <h2>Something special in mind?</h2>
+        <p>Every order starts with a conversation. Share your vision and watch it come to life with care.</p>
+      </div>
+      <button class="btn-primary" onclick="showTab('contact')">Get in Touch</button>
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="tab-section">
+    <div class="products-header reveal">
+      <div>
+        <span class="eyebrow">The Collection</span>
+        <h2 class="section-title" style="color:#ffffff !important;">Every<br><em style="color:#e8cfc8 !important;">product.</em></h2>
+      </div>
+      <p class="section-desc" style="max-width:320px;">All items are made to order. Production time is 3–7 business days. Rush orders available.</p>
+    </div>
+
+    <div class="product-grid reveal">
+
+      <!-- 01: BABY MILESTONES -->
+      <div class="product-card" style="background:var(--linen);">
+        <div class="product-card-inner">
+          <span class="product-num">No. 01</span>
+          <h3>Baby Milestone Acrylic Disks</h3>
+          <p>Stunning clear acrylic milestone disks to document your baby's first year. Month-by-month sets with beautiful designs.</p>
+          <span class="product-tag">New Mama Favorite</span>
+        </div>
+      </div>
+
+      <!-- 02: BIRTHDAY PARTY KITS -->
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">No. 02</span>
+          <h3>Birthday Party Kits</h3>
+          <p>All-inclusive party bundles with invitations, personalized party favors and personalized snack options.</p>
+          <span class="product-tag">Bundle &amp; Save</span>
+        </div>
+      </div>
+
+      <!-- 03: CAKE TOPPERS -->
+      <div class="product-card" style="background:var(--linen);">
+        <div class="product-card-inner">
+          <span class="product-num">No. 03</span>
+          <h3>Cake Toppers</h3>
+          <p>Custom cardstock toppers with shaker options for every occasion. Personalized names, ages, and themes available.</p>
+          <span class="product-tag">Popular</span>
+        </div>
+      </div>
+
+      <!-- 04: WEDDING INVITATIONS -->
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">No. 04</span>
+          <h3>Wedding Invitations</h3>
+          <p>Elegant custom invitations, place cards, and personalized wedding stationery for your big day.</p>
+          <span class="product-tag">Elegant</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">No. 04</span>
+          <h3>Wedding D&#233;cor</h3>
+          <p>Custom vinyl place cards, favors, and personalized gifts for the big day.</p>
+          <span class="product-tag">Custom</span>
+        </div>
+      </div>
+
+      <!-- 05: WATERPROOF STICKERS & MAGNETS -->
+      <div class="product-card" style="background:var(--linen);">
+        <div class="product-card-inner">
+          <span class="product-num">No. 05</span>
+          <h3>Waterproof Stickers</h3>
+          <p>Custom-designed waterproof vinyl stickers perfect for tumblers, laptops, water bottles &amp; more. Long-lasting &amp; UV resistant.</p>
+          <span class="product-tag">Best Seller</span>
+        </div>
+      </div>
+      <div class="product-card" style="background:var(--linen);">
+        <div class="product-card-inner">
+          <span class="product-num">No. 05</span>
+          <h3>Magnets</h3>
+          <p>Custom printed magnets for fridges, lockers, and cars. Great for photos, names, logos, or seasonal designs.</p>
+          <span class="product-tag">Popular</span>
+        </div>
+      </div>
+
+      <!-- 06: BACHELORETTE PARTY KITS -->
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">No. 06</span>
+          <h3>Bachelorette Party Kits</h3>
+          <p>Custom bachelorette bundles with invitations, favor bags, and everything the bride squad needs.</p>
+          <span class="product-tag">Fan Favorite</span>
+        </div>
+      </div>
+
+      <!-- 07: SHIRTS & ACCESSORIES -->
+      <div class="product-card" style="background:var(--linen);">
+        <div class="product-card-inner">
+          <span class="product-num">No. 07</span>
+          <h3>Custom Shirts &amp; Accessories</h3>
+          <p>Iron-on and heat-press vinyl designs for shirts, onesies, and accessories. Perfect for matching sets &amp; events!</p>
+          <span class="product-tag">Fan Favorite</span>
+        </div>
+      </div>
+
+      <!-- ADDITIONAL PRODUCTS -->
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">Also</span>
+          <h3>Vinyl Products</h3>
+          <p>Personalized vinyl decals for windows, walls, mugs, car decals, and any smooth surface. Indoor &amp; outdoor options.</p>
+          <span class="product-tag">Popular</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">Also</span>
+          <h3>Keychains &amp; Pins</h3>
+          <p>Custom acrylic keychains and pins — personalized with names, initials, or designs. Great as gifts or favors.</p>
+          <span class="product-tag">New</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">Also</span>
+          <h3>Occasion Cards</h3>
+          <p>Birthdays, holidays, sympathy, thank-you cards &amp; more. Beautifully printed, fully customizable with your message.</p>
+          <span class="product-tag">Custom</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">Also</span>
+          <h3>Invitations</h3>
+          <p>Birthday parties, baby showers, bridal showers, holidays &amp; more. Digital or printed — elegant designs for every style.</p>
+          <span class="product-tag">Custom</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-inner">
+          <span class="product-num">Also</span>
+          <h3>Accessories</h3>
+          <p>Tote bags, hats, mugs, tumblers, keychains &amp; more — all personalized with your name, phrase, or design.</p>
+          <span class="product-tag">Gift Ideas</span>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="cta-strip reveal" style="margin-top:1px;">
+      <div>
+        <h2>Don't see what you need?</h2>
+        <p>I love a challenge. Reach out with your idea and I'll create something entirely your own.</p>
+      </div>
+      <button class="btn-primary" onclick="showTab('contact')">Request Custom Item</button>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="tab-section">
+    <div style="margin-bottom:1px; background:var(--charcoal); padding:64px 56px; border:1px solid var(--charcoal);" class="reveal">
+      <span class="eyebrow" style="color:var(--blush);">Product Examples</span>
+      <h2 class="section-title" style="color:#ffffff !important;">See the<br><em style="color:#e8cfc8 !important;">details up close.</em></h2>
+      <div class="rule"></div>
+      <p class="section-desc" style="color:rgba(255,255,255,0.55);">A closer look at real pieces made for real celebrations — photos added regularly.</p>
+    </div>
+
+                                    <div class="gallery-grid reveal">
+      <div class="gallery-item has-photo" onclick="toggleProject('milestones')">
+        <img src="images/baby-milestone-disks.jpg" alt="Baby Milestone Disks"/>
+        <span class="gallery-count">2 photos</span>
+        <span class="gallery-caption">Baby Milestone Disks</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('occasion-cards')">
+        <img src="images/occasion-cards.jpg" alt="Occasion Cards"/>
+        <span class="gallery-count">10 photos</span>
+        <span class="gallery-caption">Occasion Cards</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('stickers')">
+        <img src="images/waterproof-stickers.jpg" alt="Waterproof Stickers"/>
+        <span class="gallery-count">9 photos</span>
+        <span class="gallery-caption">Waterproof Stickers</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('gifts')">
+        <img src="images/personalized-gifts.jpg" alt="Personalized Gifts"/>
+        <span class="gallery-count">5 photos</span>
+        <span class="gallery-caption">Personalized Gifts</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('banners')">
+        <img src="images/banners.jpg" alt="Banners"/>
+        <span class="gallery-count">2 photos</span>
+        <span class="gallery-caption">Banners</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('magnets')">
+        <img src="images/magnets.jpg" alt="Magnets"/>
+        <span class="gallery-count">3 photos</span>
+        <span class="gallery-caption">Magnets</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('keychains')">
+        <img src="images/keychains.jpg" alt="Keychains"/>
+        <span class="gallery-count">4 photos</span>
+        <span class="gallery-caption">Keychains</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('booktags')">
+        <img src="images/magnetic-book-tags.jpg" alt="Magnetic Book Tags"/>
+        <span class="gallery-count">6 photos</span>
+        <span class="gallery-caption">Magnetic Book Tags</span>
+      </div>
+      <div class="gallery-item has-photo" onclick="toggleProject('giftboxes')">
+        <img src="images/gift-boxes.jpg" alt="Gift Boxes"/>
+        <span class="gallery-count">2 photos</span>
+        <span class="gallery-caption">Gift Boxes</span>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-label">Birthday Party Kits</span>
+        <span class="gallery-sublabel">Photo coming soon</span>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-label">Cake Toppers</span>
+        <span class="gallery-sublabel">Photo coming soon</span>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-label">Wedding Stationery</span>
+        <span class="gallery-sublabel">Photo coming soon</span>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-label">Custom Shirts &amp; Accessories</span>
+        <span class="gallery-sublabel">Photo coming soon</span>
+      </div>
+    </div>
+
+    <div id="expand-milestones" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Baby Milestone Disks</span>
+        <button class="gallery-expand-close" onclick="toggleProject('milestones')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/baby-milestone-disks-1.jpg" alt="Baby Milestone Disks 1" onclick="openLightbox(this.src)"/>
+        <img src="images/baby-milestone-disks-2.jpg" alt="Baby Milestone Disks 2" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-occasion-cards" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Occasion Cards</span>
+        <button class="gallery-expand-close" onclick="toggleProject('occasion-cards')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/occasion-cards-1.jpg" alt="Occasion Cards 1" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-2.jpg" alt="Occasion Cards 2" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-3.jpg" alt="Occasion Cards 3" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-4.jpg" alt="Occasion Cards 4" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-5.jpg" alt="Occasion Cards 5" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-6.jpg" alt="Occasion Cards 6" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-7.jpg" alt="Occasion Cards 7" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-8.jpg" alt="Occasion Cards 8" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-9.jpg" alt="Occasion Cards 9" onclick="openLightbox(this.src)"/>
+        <img src="images/occasion-cards-10.jpg" alt="Occasion Cards 10" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-stickers" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Waterproof Stickers</span>
+        <button class="gallery-expand-close" onclick="toggleProject('stickers')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/waterproof-stickers-1.jpg" alt="Waterproof Stickers 1" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-2.jpg" alt="Waterproof Stickers 2" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-3.jpg" alt="Waterproof Stickers 3" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-4.jpg" alt="Waterproof Stickers 4" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-5.jpg" alt="Waterproof Stickers 5" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-6.jpg" alt="Waterproof Stickers 6" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-7.jpg" alt="Waterproof Stickers 7" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-8.jpg" alt="Waterproof Stickers 8" onclick="openLightbox(this.src)"/>
+        <img src="images/waterproof-stickers-9.jpg" alt="Waterproof Stickers 9" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-gifts" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Personalized Gifts</span>
+        <button class="gallery-expand-close" onclick="toggleProject('gifts')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/personalized-gifts-1.jpg" alt="Personalized Gifts 1" onclick="openLightbox(this.src)"/>
+        <img src="images/personalized-gifts-2.jpg" alt="Personalized Gifts 2" onclick="openLightbox(this.src)"/>
+        <img src="images/personalized-gifts-3.jpg" alt="Personalized Gifts 3" onclick="openLightbox(this.src)"/>
+        <img src="images/personalized-gifts-4.jpg" alt="Personalized Gifts 4" onclick="openLightbox(this.src)"/>
+        <img src="images/personalized-gifts-5.jpg" alt="Personalized Gifts 5" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-banners" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Banners</span>
+        <button class="gallery-expand-close" onclick="toggleProject('banners')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/banners-1.jpg" alt="Banners 1" onclick="openLightbox(this.src)"/>
+        <img src="images/banners-2.jpg" alt="Banners 2" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-magnets" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Magnets</span>
+        <button class="gallery-expand-close" onclick="toggleProject('magnets')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/magnets-1.jpg" alt="Magnets 1" onclick="openLightbox(this.src)"/>
+        <img src="images/magnets-2.jpg" alt="Magnets 2" onclick="openLightbox(this.src)"/>
+        <img src="images/magnets-3.jpg" alt="Magnets 3" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-keychains" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Keychains</span>
+        <button class="gallery-expand-close" onclick="toggleProject('keychains')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/keychains-1.jpg" alt="Keychains 1" onclick="openLightbox(this.src)"/>
+        <img src="images/keychains-2.jpg" alt="Keychains 2" onclick="openLightbox(this.src)"/>
+        <img src="images/keychains-3.jpg" alt="Keychains 3" onclick="openLightbox(this.src)"/>
+        <img src="images/keychains-4.jpg" alt="Keychains 4" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-booktags" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Magnetic Book Tags</span>
+        <button class="gallery-expand-close" onclick="toggleProject('booktags')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/magnetic-book-tags-1.jpg" alt="Magnetic Book Tags 1" onclick="openLightbox(this.src)"/>
+        <img src="images/magnetic-book-tags-2.jpg" alt="Magnetic Book Tags 2" onclick="openLightbox(this.src)"/>
+        <img src="images/magnetic-book-tags-3.jpg" alt="Magnetic Book Tags 3" onclick="openLightbox(this.src)"/>
+        <img src="images/magnetic-book-tags-4.jpg" alt="Magnetic Book Tags 4" onclick="openLightbox(this.src)"/>
+        <img src="images/magnetic-book-tags-5.jpg" alt="Magnetic Book Tags 5" onclick="openLightbox(this.src)"/>
+        <img src="images/magnetic-book-tags-6.jpg" alt="Magnetic Book Tags 6" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="expand-giftboxes" class="gallery-expand reveal">
+      <div class="gallery-expand-header">
+        <span class="gallery-expand-title">Gift Boxes</span>
+        <button class="gallery-expand-close" onclick="toggleProject('giftboxes')">Close</button>
+      </div>
+      <div class="gallery-expand-grid">
+        <img src="images/gift-boxes-1.jpg" alt="Gift Boxes 1" onclick="openLightbox(this.src)"/>
+        <img src="images/gift-boxes-2.jpg" alt="Gift Boxes 2" onclick="openLightbox(this.src)"/>
+      </div>
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+      <img id="lightboxImg" src="" alt="Enlarged photo"/>
+    </div>
+  </section>
+
+  <!-- OCCASIONS -->
+  <section id="occasions" class="tab-section">
+    <div style="margin-bottom:1px; background:var(--charcoal); padding:64px 56px; border:1px solid var(--charcoal);" class="reveal">
+      <span class="eyebrow" style="color:var(--blush);">By Occasion</span>
+      <h2 class="section-title" style="color:#ffffff !important;">Whatever the<br><em style="color:#e8cfc8 !important;">celebration.</em></h2>
+      <div class="rule"></div>
+      <p class="section-desc" style="color:rgba(255,255,255,0.55);">Covered from the first invitation to the final favor tag.</p>
+    </div>
+
+    <div class="occasions-grid reveal">
+      <div class="occasion-card">
+        <span class="occasion-num">01</span>
+        <h3>Birthdays</h3>
+        <p>Party kits, invitations, cake toppers, banners. Any age, any theme.</p>
+        <span class="occasion-tag">Most Popular</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">02</span>
+        <h3>Baby Showers</h3>
+        <p>Invitations, milestone sets, banners, favor tags, and keepsakes for the new arrival.</p>
+        <span class="occasion-tag">Sweet &amp; Special</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">03</span>
+        <h3>Bridal Showers</h3>
+        <p>Invitations, favor tags, bachelorette accessories, and personalized décor.</p>
+        <span class="occasion-tag">Bridal</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">04</span>
+        <h3>Weddings</h3>
+        <p>Custom vinyl place cards, favors, and personalized gifts.</p>
+        <span class="occasion-tag">Elegant</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">05</span>
+        <h3>Holidays</h3>
+        <p>Christmas, Halloween, Easter, Valentine's Day. Seasonal stickers, cards, and décor.</p>
+        <span class="occasion-tag">Seasonal</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">06</span>
+        <h3>Back to School</h3>
+        <p>Name labels, supply stickers, water bottle decals, and custom backpack tags.</p>
+        <span class="occasion-tag">School Ready</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">07</span>
+        <h3>Graduations</h3>
+        <p>Invitations, party décor, photo props, and custom gifts to honor the graduate.</p>
+        <span class="occasion-tag">Celebrate</span>
+      </div>
+      <div class="occasion-card">
+        <span class="occasion-num">08</span>
+        <h3>Disney Themes</h3>
+        <p>Disney-inspired party kits, shirts, milestone disks — always a signature favorite.</p>
+        <span class="occasion-tag">Signature</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="tab-section">
+    <div style="margin-bottom:1px; background:var(--charcoal); padding:64px 56px; border:1px solid var(--charcoal);" class="reveal">
+      <span class="eyebrow" style="color:var(--blush);">My Story</span>
+      <h2 class="section-title" style="color:#ffffff !important;">Made by a mama,<br><em style="color:#e8cfc8 !important;">with love.</em></h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="about-layout reveal">
+      <div class="about-visual">
+        <div class="about-monogram">B</div>
+        <div class="about-location">
+          Florida, USA<br>
+          Near Walt Disney World<br>
+          ——<br>
+          Mama · Maker · Creator
+        </div>
+      </div>
+      <div class="about-content">
+        <p>I'm the creative heart behind Bliss Press Boutique, where I bring thoughtful ideas to life through personalized designs made especially for you.</p>
+        <p>I'm a proud mom living my Florida dream just a few miles from the Most Magical Place on Earth—and I love bringing a little of that joy and magic into everything I create.</p>
+        <p>From custom party kits and cake toppers to personalized gifts, every creation is designed with care and close attention to the little details. I believe those details are what make a celebration feel truly personal—and turn an ordinary item into something worth remembering.</p>
+        <p>My style is clean, modern, and timeless, with a playful touch when the occasion calls for it. I love working closely with each customer to create something that complements their theme, reflects their vision, and feels uniquely theirs.</p>
+        <p>Bliss Press Boutique is about more than simply creating products. It's about helping you celebrate life's sweetest moments with something beautiful, meaningful, and made just for you.</p>
+        <p>Thank you for supporting my small business and allowing me to be a small part of your special memories. I can't wait to create something beautiful with you!</p>
+        <p style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.15rem; color:var(--charcoal); margin-top:28px; margin-bottom:0;">Made with love. Designed for you.</p>
+        <img src="images/xoxo-paulina.png" alt="xoxo, Paulina" style="width:220px; max-width:60%; height:auto; display:block; margin-top:18px;"/>
+        <div class="about-tags" style="margin-top:26px;">
+          <span class="about-tag">Florida Made</span>
+          <span class="about-tag">Near Disney World</span>
+          <span class="about-tag">Mama-Owned</span>
+          <span class="about-tag">Cricut Certified</span>
+          <span class="about-tag">Custom Orders</span>
+          <span class="about-tag">Ships Nationwide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="social" class="tab-section">
+    <div style="margin-bottom:1px; background:var(--charcoal); padding:64px 56px; border:1px solid var(--charcoal);" class="reveal">
+      <span class="eyebrow" style="color:var(--blush);">Follow &amp; Shop</span>
+      <h2 class="section-title" style="color:#ffffff !important;">Follow along,<br><em style="color:#e8cfc8 !important;">everywhere.</em></h2>
+      <div class="rule"></div>
+      <p class="section-desc" style="color:rgba(255,255,255,0.55);">New designs, behind-the-scenes process, and exclusive drops across all platforms.</p>
+    </div>
+
+    <div class="social-grid reveal">
+      <a href="https://www.instagram.com/blisspressboutique" target="_blank" rel="noopener" class="social-card">
+        <span class="social-platform">Instagram</span>
+        <h3>@BlissPressBoutique</h3>
+        <p>Daily behind-the-scenes, new product drops, and all the beautiful things. The most active space for updates.</p>
+        <span class="social-handle">Follow →</span>
+      </a>
+      <a href="https://www.facebook.com/share/1894D6dmSg/" target="_blank" rel="noopener" class="social-card">
+        <span class="social-platform">Facebook</span>
+        <h3>Bliss Press Boutique</h3>
+        <p>VIP group for exclusive deals, early access to new products, and a community of fellow craft lovers.</p>
+        <span class="social-handle">Join Group →</span>
+      </a>
+      <a href="https://www.tiktok.com/@blisspressboutique" target="_blank" rel="noopener" class="social-card">
+        <span class="social-platform">TikTok</span>
+        <h3>@BlissPressBoutique</h3>
+        <p>Watch the process come to life. Cricut tips, satisfying reveals, and everything in between.</p>
+        <span class="social-handle">Watch Now →</span>
+      </a>
+      <a href="https://pin.it/6XjKGJrwh" target="_blank" rel="noopener" class="social-card">
+        <span class="social-platform">Pinterest</span>
+        <h3>Bliss Press Boutique</h3>
+        <p>Save your favorites. Browse boards for party inspiration, design ideas, and seasonal collections.</p>
+        <span class="social-handle">Save Ideas →</span>
+      </a>
+      <a href="https://blisspressboutique.etsy.com" target="_blank" rel="noopener" class="social-card">
+        <span class="social-platform">Etsy</span>
+        <h3>Etsy Shop</h3>
+        <p>Ready-to-ship items, digital downloads, and hundreds of five-star reviews from happy customers.</p>
+        <span class="social-handle">Shop Now →</span>
+      </a>
+      <div class="social-card" style="background:var(--linen); cursor:default; display:flex; flex-direction:column; justify-content:center;">
+        <span class="social-platform">Hashtag</span>
+        <h3 style="font-size:1.1rem;">#BlissPressBoutique</h3>
+        <p>Tag your photos to be featured and shared right here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="tab-section">
+    <div style="margin-bottom:1px; background:var(--charcoal); padding:64px 56px; border:1px solid var(--charcoal);" class="reveal">
+      <span class="eyebrow" style="color:var(--blush);">Get In Touch</span>
+      <h2 class="section-title" style="color:#ffffff !important;">Let's create<br><em style="color:#e8cfc8 !important;">something together.</em></h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="contact-layout reveal">
+      <div class="contact-info">
+        <span class="eyebrow">Details</span>
+
+        <div class="contact-detail">
+          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-value"><a href="mailto:blisspressboutique@protonmail.com">blisspressboutique@protonmail.com</a></span>
+        </div>
+        <div class="contact-detail" style="margin-top:20px;">
+          <span class="contact-detail-label">Instagram</span>
+          <span class="contact-detail-value"><a href="https://www.instagram.com/blisspressboutique" target="_blank" rel="noopener">@BlissPressBoutique</a></span>
+        </div>
+        <div class="contact-detail" style="margin-top:20px;">
+          <span class="contact-detail-label">Response Time</span>
+          <span class="contact-detail-value">Within 24 hours</span>
+        </div>
+        <div class="contact-detail" style="margin-top:20px;">
+          <span class="contact-detail-label">Production Time</span>
+          <span class="contact-detail-value">3–7 business days<br><span style="font-size:0.78rem; color:var(--warm-mid);">Rush orders available on request</span></span>
+        </div>
+        <div class="contact-detail" style="margin-top:20px;">
+          <span class="contact-detail-label">Shipping</span>
+          <span class="contact-detail-value">Nationwide — Florida based</span>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <span class="eyebrow">Send a Message</span>
+        <form id="contactForm" method="POST" action="https://formsubmit.co/blisspressboutique@protonmail.com">
+          <div class="form-row">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" name="name" placeholder="Full name" required/>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" name="email" placeholder="your@email.com" required/>
+          </div>
+          <div class="form-row">
+            <label class="form-label">I'm Looking For</label>
+            <select class="form-select" name="product">
+              <option value="" disabled selected>Select a product</option>
+              <option>Waterproof Stickers</option>
+              <option>Vinyl Products</option>
+              <option>Baby Milestone Disks</option>
+              <option>Occasion Cards</option>
+              <option>Invitations</option>
+              <option>Birthday Party Kit</option>
+              <option>Cake Topper</option>
+              <option>Custom Shirt / Accessories</option>
+              <option>Other / Custom Request</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form-label">Your Vision</label>
+            <textarea class="form-textarea" name="message" placeholder="Tell me about your project — theme, date needed, quantity, any details that matter to you." required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New Inquiry — Bliss Press Boutique Website"/>
+          <input type="hidden" name="_captcha" value="false"/>
+          <input type="hidden" name="_template" value="table"/>
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"/>
+          <div class="form-submit">
+            <button class="btn-primary" type="submit" id="contactSubmitBtn">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-brand">Bliss Press Boutique</span>
+  <span class="footer-loc">Florida, USA · Near Walt Disney World</span>
+  <span class="footer-copy">© 2025 All Rights Reserved</span>
+</footer>
+
+<script>
+  function toggleProject(id) {
+    var panel = document.getElementById('expand-' + id);
+    var isOpen = panel.classList.contains('open');
+    document.querySelectorAll('.gallery-expand.open').forEach(function (p) { p.classList.remove('open'); });
+    if (!isOpen) {
+      panel.classList.add('open');
+      setTimeout(function () {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  }
+
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeLightbox(); }
+  });
+
+  function showTab(id) {
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(triggerReveals, 60);
+  }
+
+  function triggerReveals() {
+    document.querySelectorAll('.tab-section.active .reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.08) + 's';
+      el.classList.add('visible');
+    });
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  setTimeout(triggerReveals, 100);
+</script>
+</body>
+</html>
